@@ -1,3 +1,4 @@
+![ubutype](./ubutype.png)
 # ubutype
 
 A typing game for Ubuntu commands, based on my previous project, archtype, but now refined so Ubuntu users can join in the fun! Written in Python and made with love, test your typing speed and accuracy with now 200 real Ubuntu commands!
