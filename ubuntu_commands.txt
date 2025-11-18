@@ -1,0 +1,200 @@
+sudo apt update
+sudo apt upgrade
+sudo apt install
+sudo apt remove
+sudo apt purge
+sudo apt autoremove
+sudo apt clean
+sudo apt autoclean
+apt search
+apt show
+apt list --upgradable
+dpkg -i
+dpkg -r
+dpkg -l
+snap install
+snap remove
+snap list
+snap refresh
+snap changes
+systemctl start
+systemctl stop
+systemctl restart
+systemctl enable
+systemctl disable
+systemctl status
+systemctl daemon-reload
+systemctl list-units
+systemctl list-unit-files
+journalctl -xe
+journalctl -f
+journalctl -b
+journalctl --vacuum-time=2weeks
+journalctl -u
+timedatectl
+timedatectl set-timezone
+hostnamectl
+hostnamectl set-hostname
+localectl
+localectl set-locale
+ls -lah
+chmod +x
+chmod 755
+chmod 644
+chown -R
+find / -name
+find . -type f
+grep -r
+grep -i
+tar -xzf
+tar -czf
+tar -xvf
+unzip
+wget
+curl -O
+scp
+rsync -avz
+dd if=/dev/zero of=/dev/null
+ln -s
+df -h
+du -sh
+lsblk
+fdisk -l
+mount
+umount
+mkfs.ext4
+mkfs.btrfs
+blkid
+e2fsck
+fsck
+mount -o remount,rw /
+ip a
+ip link
+ip route
+ping -c 4
+traceroute
+netstat -tuln
+ss -tuln
+nmcli device status
+nmcli connection show
+nmcli connection up
+nmcli connection down
+iwconfig
+iwlist scan
+curl ifconfig.me
+wget -qO- ifconfig.me
+useradd -m
+userdel -r
+usermod -aG
+passwd
+groupadd
+groups
+su -
+sudo su
+visudo
+ps aux
+ps aux | grep
+top
+htop
+kill -9
+killall
+pkill
+pgrep
+nice -n 10
+renice -n 5 -p
+update-grub
+grub-install /dev/sda
+update-initramfs -u
+uname -r
+uname -a
+modprobe
+lsmod
+rmmod
+chroot /mnt
+genfstab -U /mnt >> /mnt/etc/fstab
+apt-get install
+neofetch
+screenfetch
+lscpu
+lspci
+lsusb
+free -h
+cat /proc/cpuinfo
+cat /proc/meminfo
+uptime
+dmesg | tail
+nano
+vim
+vi /etc/fstab
+cat /etc/apt/sources.list
+less /var/log/apt/history.log
+tail -f /var/log/syslog
+head -n 20
+sudo !!
+sudo -i
+chmod -R 777
+chown root:root
+ssh-keygen -t rsa -b 4096
+ssh user@host
+alias ll='ls -lah'
+source ~/.bashrc
+echo $PATH
+export PATH=$PATH:/usr/local/bin
+history | grep
+clear
+exit
+reboot
+shutdown now
+shutdown -h now
+apt policy
+apt-cache policy
+apt-file search
+apt-file update
+apt-mark hold
+apt-mark unhold
+systemctl is-active
+systemctl is-enabled
+systemctl mask
+systemctl unmask
+journalctl -p err..alert
+journalctl -u -b -1
+ls -i
+stat
+tune2fs -l
+btrfs filesystem df
+btrfs subvolume list
+btrfs subvolume snapshot
+nmcli radio wifi
+nmcli general status
+ip neigh
+arp-scan -l
+curl -I
+dig
+nslookup
+id
+sudo -l
+getent passwd
+getent group
+chattr +i
+tee
+xargs
+watch
+diff
+rsync -avz --delete
+tar --exclude=
+uptime -p
+watch -n 1 df -h
+vmstat 1
+iostat -x 1
+free -m
+lsattr
+xclip -selection clipboard
+scp -r
+tar --strip-components=1 -xf
+curl -LO
+unrar x
+journalctl -u nginx -b --since "2 hours ago"
+rsync -avz --progress
+sudo rm -rf /
+sudo rm -rf / --no-preserve-root
+find /var/log -type f -size +5M -exec gzip -9 {} \; -exec sha256sum {}.gz \; | tee ~/biglogs-checksums.txt | sort -k2
