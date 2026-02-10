@@ -1,0 +1,1002 @@
+[
+  {
+    "command": "sudo apt update",
+    "explanation": "Update the list of available packages from the repositories.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt upgrade",
+    "explanation": "Install available upgrades of all packages currently installed on the system.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt install",
+    "explanation": "Install a new package by searching for it in the repositories.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt remove",
+    "explanation": "Remove an installed package while keeping its configuration files.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt purge",
+    "explanation": "Remove a package and its configuration files completely.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt autoremove",
+    "explanation": "Remove packages that were installed as dependencies but are no longer needed.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "sudo apt clean",
+    "explanation": "Clean the local repository of retrieved package files (.deb).",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo apt autoclean",
+    "explanation": "Remove old versions of package files that are no longer downloadable.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "apt search",
+    "explanation": "Search for a package in the available package list.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "apt show",
+    "explanation": "Display detailed information about a package.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "apt list --upgradable",
+    "explanation": "List all packages that have available updates.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "dpkg -i",
+    "explanation": "Install a Debian package file (.deb).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "dpkg -r",
+    "explanation": "Remove an installed package using dpkg.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "dpkg -l",
+    "explanation": "List all installed packages known to dpkg.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "snap install",
+    "explanation": "Install a package as a snap package.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "snap remove",
+    "explanation": "Remove a snap package from the system.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "snap list",
+    "explanation": "List all installed snap packages.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "snap refresh",
+    "explanation": "Update all installed snap packages to their latest versions.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "snap changes",
+    "explanation": "List current and past snap change operations.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl start",
+    "explanation": "Start a systemd service.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl stop",
+    "explanation": "Stop a systemd service.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl restart",
+    "explanation": "Restart a systemd service.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl enable",
+    "explanation": "Enable a systemd service to start at boot.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl disable",
+    "explanation": "Disable a systemd service from starting at boot.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl status",
+    "explanation": "Check the current status of a systemd service.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "systemctl daemon-reload",
+    "explanation": "Reload the systemd manager configuration to recognize changes.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "systemctl list-units",
+    "explanation": "List active systemd units.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "systemctl list-unit-files",
+    "explanation": "List all installed unit files and their enabled status.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "journalctl -xe",
+    "explanation": "View the most recent entries in the system journal with extra details.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "journalctl -f",
+    "explanation": "Follow the system journal entries in real-time.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "journalctl -b",
+    "explanation": "Show journal entries from the current boot.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "journalctl --vacuum-time=2weeks",
+    "explanation": "Remove journal entries older than 2 weeks.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "journalctl -u",
+    "explanation": "View logs filtered by a specific unit (service).",
+    "time_limit": 6.5
+  },
+  {
+    "command": "timedatectl",
+    "explanation": "Check or change the system time and date settings.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "timedatectl set-timezone",
+    "explanation": "Set the system timezone.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "hostnamectl",
+    "explanation": "View or change the system hostname and related settings.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "hostnamectl set-hostname",
+    "explanation": "Set a new system hostname.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "localectl",
+    "explanation": "View or set the system locale and keyboard layout settings.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "localectl set-locale",
+    "explanation": "Set the system-wide locale.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "ls -lah",
+    "explanation": "List files in long format with hidden files and human-readable sizes.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "chmod +x",
+    "explanation": "Make a file executable.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "chmod 755",
+    "explanation": "Set file permissions to rwxr-xr-x (executable/readable by all).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "chmod 644",
+    "explanation": "Set file permissions to rw-r--r-- (readable by all).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "chown -R",
+    "explanation": "Recursively change the owner and/or group of a directory or file.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "find / -name",
+    "explanation": "Search for a file by name starting from the root directory.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "find . -type f",
+    "explanation": "Find all regular files in the current directory and subdirectories.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "grep -r",
+    "explanation": "Search for a string recursively in a directory.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "grep -i",
+    "explanation": "Search for a string while ignoring case sensitivity.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "tar -xzf",
+    "explanation": "Extract a compressed tar archive (.tar.gz).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "tar -czf",
+    "explanation": "Create a compressed tar archive (.tar.gz).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "tar -xvf",
+    "explanation": "Extract a tar archive while showing progress.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "unzip",
+    "explanation": "Extract files from a ZIP archive.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "wget",
+    "explanation": "Download files from the web via HTTP, HTTPS, or FTP.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "curl -O",
+    "explanation": "Download a file and save it with its remote name.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "scp",
+    "explanation": "Securely copy files between hosts over SSH.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "rsync -avz",
+    "explanation": "Sync files and directories efficiently between locations.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "dd if=/dev/zero of=/dev/null",
+    "explanation": "Data Duplicator: Copy bits from zero source to null destination (benchmark).",
+    "time_limit": 8.5
+  },
+  {
+    "command": "ln -s",
+    "explanation": "Create a symbolic link to a file or directory.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "df -h",
+    "explanation": "Show disk space usage in human-readable format.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "du -sh",
+    "explanation": "Show total disk usage of the current directory in human-readable format.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "lsblk",
+    "explanation": "List information about all available block devices.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "fdisk -l",
+    "explanation": "List all partition tables on all available disk devices.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "mount",
+    "explanation": "Mount a filesystem to a specific directory.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "umount",
+    "explanation": "Unmount a previously mounted filesystem.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "mkfs.ext4",
+    "explanation": "Format a partition with the EXT4 filesystem.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "mkfs.btrfs",
+    "explanation": "Format a partition with the BTRFS filesystem.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "blkid",
+    "explanation": "Locate or print block device attributes (UUIDs, Labels).",
+    "time_limit": 4.5
+  },
+  {
+    "command": "e2fsck",
+    "explanation": "Check an EXT2/EXT3/EXT4 filesystem for errors.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "fsck",
+    "explanation": "Check and repair a Linux filesystem.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "mount -o remount,rw /",
+    "explanation": "Remount the root filesystem as read-write.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "ip a",
+    "explanation": "Show IP addresses and properties assigned to network interfaces.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "ip link",
+    "explanation": "Configure or display the state of network interfaces.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "ip route",
+    "explanation": "Show current routing tables for network traffic.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "ping -c 4",
+    "explanation": "Send 4 ICMP ECHO_REQUESTs to a network host to test connectivity.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "traceroute",
+    "explanation": "Print the route packets take to network host.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "netstat -tuln",
+    "explanation": "Show active network connections and listening ports (numerical).",
+    "time_limit": 6.5
+  },
+  {
+    "command": "ss -tuln",
+    "explanation": "Socket statistics: Display listening TCP and UDP sockets.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "nmcli device status",
+    "explanation": "Check the status of network devices via Network Manager CLI.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "nmcli connection show",
+    "explanation": "List all configured network connections.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "nmcli connection up",
+    "explanation": "Activate a specific network connection.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "nmcli connection down",
+    "explanation": "Deactivate a specific network connection.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "iwconfig",
+    "explanation": "Configure or display wireless network interface settings.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "iwlist scan",
+    "explanation": "Scan for available wireless networks.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "curl ifconfig.me",
+    "explanation": "Fetch your public IP address using curl and ifconfig.me.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "wget -qO- ifconfig.me",
+    "explanation": "Fetch your public IP address using wget quietly.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "useradd -m",
+    "explanation": "Create a new user and its home directory.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "userdel -r",
+    "explanation": "Remove a user account and its files recursively.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "usermod -aG",
+    "explanation": "Append a user to a group.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "passwd",
+    "explanation": "Change the password for the current or a specific user.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "groupadd",
+    "explanation": "Create a new user group.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "groups",
+    "explanation": "Show the groups a user belongs to.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "su -",
+    "explanation": "Switch to another user (defaults to root) as a login shell.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "sudo su",
+    "explanation": "Switch to the root user with sudo permissions.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "visudo",
+    "explanation": "Safely edit the sudoers configuration file.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "ps aux",
+    "explanation": "Display all currently running processes on the system.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "ps aux | grep",
+    "explanation": "Filter running processes by a specific name.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "top",
+    "explanation": "Display real-time system process activity.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "htop",
+    "explanation": "Interactive and improved version of the top command.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "kill -9",
+    "explanation": "Forced termination of a process by its PID.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "killall",
+    "explanation": "Kill processes by name instead of PID.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "pkill",
+    "explanation": "Send signals to processes based on name and other attributes.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "pgrep",
+    "explanation": "List process IDs based on pattern matching.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "nice -n 10",
+    "explanation": "Run a command with a modified scheduling priority.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "renice -n 5 -p",
+    "explanation": "Alter the priority of a running process.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "update-grub",
+    "explanation": "Update the GRUB bootloader configuration.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "grub-install /dev/sda",
+    "explanation": "Install GRUB bootloader to the specified drive.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "update-initramfs -u",
+    "explanation": "Update the initial RAM filesystem for boot.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "uname -r",
+    "explanation": "Print the current kernel version.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "uname -a",
+    "explanation": "Print all system information including kernel and architecture.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "modprobe",
+    "explanation": "Add or remove modules from the Linux kernel.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "lsmod",
+    "explanation": "Display the status of modules in the Linux kernel.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "rmmod",
+    "explanation": "Remove a module from the Linux kernel.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "chroot /mnt",
+    "explanation": "Change the root directory for the current process to a new path.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "genfstab -U /mnt >> /mnt/etc/fstab",
+    "explanation": "Generate fstab entries based on mounted devices.",
+    "time_limit": 11.5
+  },
+  {
+    "command": "apt-get install",
+    "explanation": "Older command for installing packages (use 'apt' instead).",
+    "time_limit": 7.5
+  },
+  {
+    "command": "neofetch",
+    "explanation": "A command-line system information tool with a logo.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "screenfetch",
+    "explanation": "System information script for terminal/CLI.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "lscpu",
+    "explanation": "Display information about the CPU architecture.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "lspci",
+    "explanation": "List all PCI devices on the system.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "lsusb",
+    "explanation": "List all USB devices currently connected.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "free -h",
+    "explanation": "Display amount of free and used memory in human-readable format.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "cat /proc/cpuinfo",
+    "explanation": "Show detailed processor information.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "cat /proc/meminfo",
+    "explanation": "Show detailed memory usage information.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "uptime",
+    "explanation": "Show how long the system has been running.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "dmesg | tail",
+    "explanation": "Show the last few messages from the kernel ring buffer.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "nano",
+    "explanation": "Simple, user-friendly terminal-based text editor.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "vim",
+    "explanation": "Highly configurable, professional text editor.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "vi /etc/fstab",
+    "explanation": "Edit the filesystem table using the vi editor.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "cat /etc/apt/sources.list",
+    "explanation": "Display the sources list for apt repositories.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "less /var/log/apt/history.log",
+    "explanation": "View the apt transaction history with paging.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "tail -f /var/log/syslog",
+    "explanation": "Watch the system log file continuously for updates.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "head -n 20",
+    "explanation": "Output the first 20 lines of a file.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "sudo !!",
+    "explanation": "Run the previous command again but with sudo privileges.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "sudo -i",
+    "explanation": "Open a root login shell.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "chmod -R 777",
+    "explanation": "CRITICAL: Recursively give full permissions to everyone (not recommended).",
+    "time_limit": 7.5
+  },
+  {
+    "command": "chown root:root",
+    "explanation": "Change the owner and group of a file to root.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "ssh-keygen -t rsa -b 4096",
+    "explanation": "Generate a new 4096-bit RSA SSH key pair.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "ssh user@host",
+    "explanation": "Connect to a remote machine via SSH.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "alias ll='ls -lah'",
+    "explanation": "Create an 'll' alias for listing all files in detail.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "source ~/.bashrc",
+    "explanation": "Reload the .bashrc configuration file for the current shell.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "echo $PATH",
+    "explanation": "Show the current system execution PATH.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "export PATH=$PATH:/usr/local/bin",
+    "explanation": "Add a new directory to the system PATH permanently for current session.",
+    "time_limit": 11.5
+  },
+  {
+    "command": "history | grep",
+    "explanation": "Search through the command history for a pattern.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "clear",
+    "explanation": "Clear the terminal screen.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "exit",
+    "explanation": "Close the current terminal session or logout.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "reboot",
+    "explanation": "Restart the system.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "shutdown now",
+    "explanation": "Shutdown the system immediately.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "shutdown -h now",
+    "explanation": "Halt and power off the system immediately.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "apt policy",
+    "explanation": "Show package versions and policy for apt.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "apt-cache policy",
+    "explanation": "Query the apt cache for package installation policy.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "apt-file search",
+    "explanation": "Search for which package contains a specific file.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "apt-file update",
+    "explanation": "Update the database used by apt-file.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "apt-mark hold",
+    "explanation": "Prevent a package from being automatically upgraded.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "apt-mark unhold",
+    "explanation": "Allow a package to be automatically upgraded again.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "systemctl is-active",
+    "explanation": "Check if a specified unit is currently active.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "systemctl is-enabled",
+    "explanation": "Check if a specified unit is enabled for boot.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "systemctl mask",
+    "explanation": "Mask a unit, preventing it from being started.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "systemctl unmask",
+    "explanation": "Unmask a unit, allowing it to be started again.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "journalctl -p err..alert",
+    "explanation": "View journal entries with priority between error and alert.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "journalctl -u -b -1",
+    "explanation": "View logs from a unit during the previous boot.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "ls -i",
+    "explanation": "List files with their index numbers (inodes).",
+    "time_limit": 4.5
+  },
+  {
+    "command": "stat",
+    "explanation": "Display detailed file or filesystem status.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "tune2fs -l",
+    "explanation": "List parameters of an EXT filesystem.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "btrfs filesystem df",
+    "explanation": "Show disk space usage for a BTRFS filesystem.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "btrfs subvolume list",
+    "explanation": "List BTRFS subvolumes and snapshots.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "btrfs subvolume snapshot",
+    "explanation": "Create a snapshot of a BTRFS subvolume.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "nmcli radio wifi",
+    "explanation": "Check or set the status of Wi-Fi.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "nmcli general status",
+    "explanation": "Check the overall status of Network Manager.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "ip neigh",
+    "explanation": "Show the neighbor table (ARP cache).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "arp-scan -l",
+    "explanation": "Scan the local network for connected devices via ARP.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "curl -I",
+    "explanation": "Fetch only the HTTP response headers (metadata).",
+    "time_limit": 5.5
+  },
+  {
+    "command": "dig",
+    "explanation": "Perform DNS lookups and queries.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "nslookup",
+    "explanation": "Query internet name servers interactively.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "id",
+    "explanation": "Display user and group IDs for a user.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "sudo -l",
+    "explanation": "List the user's allowed sudo privileges.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "getent passwd",
+    "explanation": "Retrieve entries from the passwd database.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "getent group",
+    "explanation": "Retrieve entries from the group database.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "chattr +i",
+    "explanation": "Make a file immutable (cannot be modified or deleted).",
+    "time_limit": 6.5
+  },
+  {
+    "command": "tee",
+    "explanation": "Read from standard input and write to files and stdout.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "xargs",
+    "explanation": "Build and execute commands from standard input.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "watch",
+    "explanation": "Run a command periodically and show its output.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "diff",
+    "explanation": "Compare two files line by line.",
+    "time_limit": 4.5
+  },
+  {
+    "command": "rsync -avz --delete",
+    "explanation": "Sync directories and delete files not in source.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "tar --exclude=",
+    "explanation": "Create an archive excluding certain files/directories.",
+    "time_limit": 7.5
+  },
+  {
+    "command": "uptime -p",
+    "explanation": "Display system uptime in a pretty, human-readable format.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "watch -n 1 df -h",
+    "explanation": "Watch disk space usage updates every second.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "vmstat 1",
+    "explanation": "Report virtual memory statistics every second.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "iostat -x 1",
+    "explanation": "Show detailed I/O statistics every second.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "free -m",
+    "explanation": "Display memory usage in megabytes.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "lsattr",
+    "explanation": "List file attributes on a Linux native filesystem.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "xclip -selection clipboard",
+    "explanation": "Interact with the system clipboard via terminal.",
+    "time_limit": 9.5
+  },
+  {
+    "command": "scp -r",
+    "explanation": "Recursively copy directories between hosts via SSH.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "tar --strip-components=1 -xf",
+    "explanation": "Extract an archive while stripping the root directory.",
+    "time_limit": 10.5
+  },
+  {
+    "command": "curl -LO",
+    "explanation": "Download a file following redirects and keeping its name.",
+    "time_limit": 6.5
+  },
+  {
+    "command": "unrar x",
+    "explanation": "Extract files from a RAR archive.",
+    "time_limit": 5.5
+  },
+  {
+    "command": "journalctl -u nginx -b --since \"2 hours ago\"",
+    "explanation": "Retrieve Nginx logs from the last 2 hours from current boot.",
+    "time_limit": 16.5
+  },
+  {
+    "command": "rsync -avz --progress",
+    "explanation": "Sync files and show progress of the transfer.",
+    "time_limit": 8.5
+  },
+  {
+    "command": "sudo rm -rf /",
+    "explanation": "CRITICAL: Attempt to delete everything on the system (VERY DANGEROUS).",
+    "time_limit": 7.5
+  },
+  {
+    "command": "sudo rm -rf / --no-preserve-root",
+    "explanation": "CRITICAL: Force delete everything from root (MOST DANGEROUS).",
+    "time_limit": 11.5
+  },
+  {
+    "command": "find /var/log -type f -size +5M -exec gzip -9 {} \\; -exec sha256sum {}.gz \\; | tee ~/biglogs-checksums.txt | sort -k2",
+    "explanation": "Compress logs >5MB, hash them, save report, and sort by hash.",
+    "time_limit": 36.5
+  }
+]

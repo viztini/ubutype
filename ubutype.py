@@ -10,7 +10,6 @@ def main(stdscr):
     curses.start_color()
     curses.use_default_colors()
 
-    # Color pairs
     curses.init_pair(1, curses.COLOR_CYAN, -1)
     curses.init_pair(2, curses.COLOR_RED, -1)
     curses.init_pair(3, curses.COLOR_YELLOW, -1)
@@ -19,7 +18,6 @@ def main(stdscr):
     curses.init_pair(6, curses.COLOR_WHITE, -1)
     curses.init_pair(7, curses.COLOR_BLUE, -1)
 
-    # Game variables
     commands = load_commands()
     random.shuffle(commands)
     
@@ -42,7 +40,7 @@ def main(stdscr):
     show_intro(stdscr)
     
     while game_state["completed"] < len(commands):
-        next_command(game_state)
+        next_command(game_state, stdscr)
         status = run_level(stdscr, game_state)
         
         if status == "QUIT":
@@ -51,12 +49,12 @@ def main(stdscr):
         elif status == "TIMEOUT":
             timeout_choice = handle_timeout(stdscr, game_state)
             if timeout_choice == "RETRY":
-                game_state["current_command_index"] -= 1 # Retry
+                game_state["current_command_index"] -= 1
             elif timeout_choice == "QUIT":
                 show_game_over(stdscr, game_state, quit=True)
                 return
-            else: # SKIP
-                game_state["completed"] += 1 # Skip
+            else:
+                game_state["completed"] += 1
         elif status == "CORRECT":
             time_used = time.time() - game_state["start_time"]
             correct_status = handle_correct(stdscr, game_state, time_used)
@@ -65,14 +63,18 @@ def main(stdscr):
                 return
         elif status == "INCORRECT":
             shake_screen(stdscr, game_state)
-            game_state["user_input"] = "" # Reset input on wrong enter
+            game_state["user_input"] = ""
     
     show_game_over(stdscr, game_state)
 
 def load_commands():
     script_path = os.path.dirname(os.path.realpath(__file__))
-    with open(os.path.join(script_path, 'ubuntu_commands.txt'), 'r') as f:
-        return [line.strip() for line in f.readlines()]
+    json_path = os.path.join(script_path, 'ubuntu_commands.json')
+    try:
+        with open(json_path, 'r') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 def load_high_score():
     script_path = os.path.dirname(os.path.realpath(__file__))
@@ -108,28 +110,31 @@ def get_rank(time_used, time_limit):
 def center_text(text, width):
     return text.center(width)
 
+def safe_addstr(stdscr, y, x, text, attr=0):
+    h, w = stdscr.getmaxyx()
+    if 0 <= y < h and 0 <= x < w:
+        try:
+            stdscr.addstr(y, x, text[:w-x], attr)
+        except curses.error:
+            pass
+
 def display_ui(stdscr, game_state, offset_x=0, offset_y=0):
     stdscr.clear()
     height, width = stdscr.getmaxyx()
-    
     line = height // 2 - 8 + offset_y
 
-    # Title
-    stdscr.addstr(line + offset_y, 0, center_text("UBUTYPE", width + offset_x), curses.color_pair(1) | curses.A_BOLD)
+    safe_addstr(stdscr, line, 0, center_text("UBUTYPE", width + offset_x), curses.color_pair(1) | curses.A_BOLD)
     line += 2
 
-    # Stats
     stats = f"Level {game_state['level']}  |  Score: {game_state['score']}  |  High Score: {game_state['high_score']}  |  Completed: {game_state['completed']}/{len(game_state['commands'])}"
-    stdscr.addstr(line + offset_y, 0, center_text(stats, width + offset_x), curses.color_pair(6))
+    safe_addstr(stdscr, line, 0, center_text(stats, width + offset_x), curses.color_pair(6))
     line += 2
 
-    # Command
-    stdscr.addstr(line + offset_y, 0, center_text("Type this command:", width + offset_x), curses.color_pair(6))
+    safe_addstr(stdscr, line, 0, center_text("Type this command:", width + offset_x), curses.color_pair(6))
     line += 2
-    stdscr.addstr(line + offset_y, 0, center_text(game_state["current_command"], width + offset_x), curses.color_pair(3) | curses.A_BOLD)
+    safe_addstr(stdscr, line, 0, center_text(game_state["current_command"], width + offset_x), curses.color_pair(3) | curses.A_BOLD)
     line += 2
 
-    # Timer
     percentage = (game_state["time_remaining"] / game_state["time_limit"]) * 100
     color = 4
     if percentage < 30:
@@ -139,38 +144,37 @@ def display_ui(stdscr, game_state, offset_x=0, offset_y=0):
 
     bar_length = min(60, width - 20)
     filled = int((game_state["time_remaining"] / game_state["time_limit"]) * bar_length)
-    
     filled = max(0, min(bar_length, filled))
-    
     bar = '█' * filled + '░' * (bar_length - filled)
     
     time_text = f"{game_state['time_remaining']:.1f}s / {game_state['time_limit']:.1f}s"
-    stdscr.addstr(line + offset_y, 0, center_text(time_text, width + offset_x), curses.color_pair(color))
+    safe_addstr(stdscr, line, 0, center_text(time_text, width + offset_x), curses.color_pair(color))
     line += 1
-    stdscr.addstr(line + offset_y, 0, center_text(bar, width + offset_x), curses.color_pair(color))
+    safe_addstr(stdscr, line, 0, center_text(bar, width + offset_x), curses.color_pair(color))
     line += 2
 
-    # User input
-    input_display_y = line + offset_y
+    input_display_y = line
     input_display_x = (width - len(game_state["current_command"])) // 2 + offset_x
     
     for i, char in enumerate(game_state["current_command"]):
-        if i < len(game_state["user_input"]):
-            if game_state["user_input"][i] == char:
-                stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(1))
-            else:
-                stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(2) | curses.A_UNDERLINE)
-        else:
-            stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(7))
+        if 0 <= input_display_y < height and 0 <= input_display_x + i < width:
+            try:
+                if i < len(game_state["user_input"]):
+                    if game_state["user_input"][i] == char:
+                        stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(1))
+                    else:
+                        stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(2) | curses.A_UNDERLINE)
+                else:
+                    stdscr.addch(input_display_y, input_display_x + i, char, curses.color_pair(7))
+            except curses.error:
+                pass
             
     stdscr.refresh()
 
 def show_intro(stdscr):
     stdscr.clear()
     height, width = stdscr.getmaxyx()
-    
     line = height // 2 - 8
-    
     intro_text = [
         "╔═══════════════════════════════════════╗",
         "║                UBUTYPE                ║",
@@ -187,43 +191,51 @@ def show_intro(stdscr):
         "",
         "Press ENTER to start..."
     ]
-    
     for i, text in enumerate(intro_text):
-        stdscr.addstr(line + i, 0, center_text(text, width), curses.color_pair(1) | curses.A_BOLD)
-        
+        safe_addstr(stdscr, line + i, 0, center_text(text, width), curses.color_pair(1) | curses.A_BOLD)
     stdscr.refresh()
-    
     while True:
         key = stdscr.getch()
         if key in [curses.KEY_ENTER, 10, 13]:
             break
 
-def next_command(game_state):
-    game_state["current_command"] = game_state["commands"][game_state["current_command_index"]]
-    game_state["time_limit"] = get_time_limit(game_state["current_command"])
+def animate_slide_in(stdscr, game_state):
+    height, width = stdscr.getmaxyx()
+    for y in range(height, 0, -2):
+        display_ui(stdscr, game_state, offset_y=y)
+        time.sleep(0.01)
+    display_ui(stdscr, game_state)
+
+def next_command(game_state, stdscr=None):
+    command_data = game_state["commands"][game_state["current_command_index"]]
+    game_state["current_command"] = command_data["command"]
+    game_state["current_explanation"] = command_data.get("explanation", "No explanation available.")
+    
+    if "time_limit" in command_data:
+        game_state["time_limit"] = command_data["time_limit"]
+    else:
+        game_state["time_limit"] = get_time_limit(game_state["current_command"])
+        
     game_state["user_input"] = ""
     game_state["start_time"] = time.time()
     game_state["time_remaining"] = game_state["time_limit"]
     game_state["current_command_index"] += 1
+    if stdscr:
+        animate_slide_in(stdscr, game_state)
 
 def run_level(stdscr, game_state):
     stdscr.nodelay(True)
-    
     while True:
         game_state["time_remaining"] = game_state["time_limit"] - (time.time() - game_state["start_time"])
-        
         if game_state["time_remaining"] <= 0:
             return "TIMEOUT"
-            
         display_ui(stdscr, game_state)
-        
         try:
             key = stdscr.getch()
         except curses.error:
             key = -1
         except KeyboardInterrupt:
             return "QUIT"
-            
         if key != -1:
             if key in [curses.KEY_ENTER, 10, 13]:
                 if game_state["user_input"] == game_state["current_command"]:
@@ -234,34 +246,39 @@ def run_level(stdscr, game_state):
                 game_state["user_input"] = game_state["user_input"][:-1]
             elif 32 <= key <= 126:
                 game_state["user_input"] += chr(key)
-        
         time.sleep(0.01)
 
 def handle_correct(stdscr, game_state, time_used):
     rank_data = get_rank(time_used, game_state["time_limit"])
     points = {'S': 100, 'A': 75, 'B': 50, 'C': 25, 'D': 10}[rank_data['rank']]
-    
     game_state["score"] += points
     game_state["completed"] += 1
-    
     if game_state["completed"] % 10 == 0:
         game_state["level"] += 1
-        
     if game_state["score"] > game_state["high_score"]:
         game_state["high_score"] = game_state["score"]
         save_high_score(game_state["high_score"])
-        
-    rank_status = display_rank(stdscr, rank_data, time_used)
+    rank_status = display_rank(stdscr, rank_data, time_used, game_state)
     if rank_status == "QUIT":
         return "QUIT"
-    
     return "CORRECT"
 
 def handle_timeout(stdscr, game_state):
     stdscr.nodelay(False)
+    stdscr.clear()
     height, width = stdscr.getmaxyx()
-    stdscr.addstr(height // 2, 0, center_text("TIME'S UP!", width), curses.color_pair(2) | curses.A_BOLD)
-    stdscr.addstr(height // 2 + 1, 0, center_text("Press 'r' to retry, 'q' to quit, or any other key to skip.", width), curses.color_pair(6))
+    line = height // 2 - 4
+    
+    safe_addstr(stdscr, line, 0, center_text("TIME'S UP!", width), curses.color_pair(2) | curses.A_BOLD)
+    line += 2
+    
+    safe_addstr(stdscr, line, 0, center_text("What this command does:", width), curses.color_pair(1))
+    line += 1
+    explanation = game_state.get("current_explanation", "")
+    safe_addstr(stdscr, line, 0, center_text(explanation, width), curses.color_pair(6))
+    line += 2
+    
+    safe_addstr(stdscr, line, 0, center_text("Press 'r' to retry, 'q' to quit, or any other key to skip.", width), curses.color_pair(6))
     stdscr.refresh()
     
     key = stdscr.getch()
@@ -272,30 +289,33 @@ def handle_timeout(stdscr, game_state):
     else:
         return "SKIP"
 
-def display_rank(stdscr, rank_data, time_used):
+def display_rank(stdscr, rank_data, time_used, game_state):
     stdscr.clear()
     height, width = stdscr.getmaxyx()
-    line = height // 2 - 2
-    
+    line = height // 2 - 4
     rank_message = f"{rank_data['rank']} RANK - {rank_data['message']}"
     time_message = f"Time: {time_used:.2f}s"
-    
-    stdscr.addstr(line, 0, center_text(rank_message, width), curses.color_pair(rank_data['color']) | curses.A_BOLD)
-    stdscr.addstr(line + 1, 0, center_text(time_message, width), curses.color_pair(6))
-    stdscr.addstr(height - 1, 0, center_text("Press 'q' to quit or any other key to continue.", width)[:width - 1], curses.color_pair(6))
+    safe_addstr(stdscr, line, 0, center_text(rank_message, width), curses.color_pair(rank_data['color']) | curses.A_BOLD)
+    line += 2
+    safe_addstr(stdscr, line, 0, center_text(time_message, width), curses.color_pair(6))
+    line += 2
+    safe_addstr(stdscr, line, 0, center_text("What this command does:", width), curses.color_pair(1))
+    line += 1
+    explanation = game_state.get("current_explanation", "")
+    safe_addstr(stdscr, line, 0, center_text(explanation, width), curses.color_pair(6))
+    safe_addstr(stdscr, height - 1, 0, center_text("Press 'q' to quit or any other key to continue.", width)[:width - 1], curses.color_pair(6))
     stdscr.refresh()
-    
-    key = stdscr.getch()
-    if key == ord('q'):
-        return "QUIT"
-    else:
-        return "CONTINUE"
+    while True:
+        key = stdscr.getch()
+        if key == ord('q'):
+            return "QUIT"
+        elif key != -1:
+            return "CONTINUE"
 
 def show_game_over(stdscr, game_state, quit=False):
     stdscr.clear()
     height, width = stdscr.getmaxyx()
     line = height // 2 - 4
-    
     if quit:
         messages = [
             "GAME OVER",
@@ -315,10 +335,8 @@ def show_game_over(stdscr, game_state, quit=False):
             "",
             "Press any key to exit..."
         ]
-    
     for i, msg in enumerate(messages):
-        stdscr.addstr(line + i, 0, center_text(msg, width), curses.color_pair(4) | curses.A_BOLD)
-        
+        safe_addstr(stdscr, line + i, 0, center_text(msg, width), curses.color_pair(4) | curses.A_BOLD)
     stdscr.refresh()
     stdscr.nodelay(False)
     stdscr.getch()
