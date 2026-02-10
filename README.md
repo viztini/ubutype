@@ -14,6 +14,8 @@ This game is built using Python's `curses` library to create a terminal-based us
 *   **Scoring:** Earn points for each correctly typed command and build your high score.
 *   **Interactive Menus:** Retry commands, and quit from different screens.
 *   **Terminal UI:** A clean and colorful interface built with the `curses` library.
+*   **Smooth Animations:** Smooth fade in and slide in animations.
+*   **Exceptional Explanations:** Explains what the command does afterward you fail/complete it
 
 ## Installation
 
