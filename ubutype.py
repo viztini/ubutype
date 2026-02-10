@@ -180,7 +180,7 @@ def show_intro(stdscr):
         "║                UBUTYPE                ║",
         "╚═══════════════════════════════════════╝",
         "",
-        "MonkeyType for Ubuntu Commands",
+        "A fun typing game for Ubuntu commands",
         "",
         "Type commands as fast as you can",
         "Timer speeds up as you level up",
